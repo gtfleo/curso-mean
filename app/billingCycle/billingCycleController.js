@@ -19,18 +19,18 @@
             const page = parseInt($location.search().page) || 1
 
             //?skip pula registros e faz o controle de início da paginação (se page=1, skip=0)
-            $http.get(`${url}?skip=${(page - 1) * 10}&limit=10`).success(function(response) {
+            $http.get(`${url}?skip=${(page - 1) * 10}&limit=10`).then(function(response) {
                 //vm.billingCycle = {} limpa a referencia ao objeto, para poder incluir o próximo;
                 //declarar credits: [{}], debts: [{}] cria-se elementos vazios e evita-se que tenha que ter
                 //um débito ou crédito disponível, para fazer as outras ações que estão dentro de 
                 //creditList.html ou debtList.html
                 vm.billingCycle = {credits: [{}], debts: [{}]} 
-                vm.billingCycles = response //através do get feito na url
+                vm.billingCycles = response.data //através do get feito na url
                 vm.calculateValues() //atualizando o somatório com a função lá de baixo
 
                 //depois q a lista foi obtida, fazer um count de billingCycles, 
                 //que vai retornar a quantidade de regs da collection no mongo:
-                $http.get(`${url}/count`).success(function(response) {
+                $http.get(`${url}/count`).then(function(response) {
                     vm.pages = Math.ceil(response.value / 10) //Math.ceil arredonda pra cima (10 regs por página)
                     tabs.show(vm, {tabList: true, tabCreate: true}) //mostra tabList e tabCreate apenas depois do count, para que o paginador apareça na tela sempre que houver conteúdo
                 })
@@ -62,11 +62,11 @@
 
         vm.update = function() {
             const updateUrl = `${url}/${vm.billingCycle._id}`
-            $http.put(updateUrl, vm.billingCycle).success(function(response) {
+            $http.put(updateUrl, vm.billingCycle).then(function(response) {
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
-            }).error(function(data) {
-                msgs.addError(data.errors)
+            }).catch(function(response) {
+                msgs.addError(response.data.errors)
             })
         }
 
@@ -75,11 +75,11 @@
         vm.delete = function() {
             //concatenando a url base (const url lá de cima) com o id do billingCycle
             const deleteUrl = `${url}/${vm.billingCycle._id}`
-            $http.delete(deleteUrl, vm.billingCycle).success(function(response) {
+            $http.delete(deleteUrl, vm.billingCycle).then(function(response) {
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
-            }).error(function(data) {
-                msgs.addError(data.errors)
+            }).catch(function(response) {
+                msgs.addError(response.data.errors)
             })
         }
 
