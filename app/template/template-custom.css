@@ -2,4 +2,19 @@
     Arquivo para configurações dos css
 */
 
-.main-footer {position: fixed; bottom: 0px; width: 100%}
+html {
+    background-color: #ecf0f5;
+}
+  
+.main-footer {
+    position: fixed;
+    bottom:0px;
+    width:100%;
+}
+  
+#toast-container {
+    top: 70px;
+}
+
+/*Confirmar aqui a necessidade desse código*/
+.table-actions {width: 140px;}

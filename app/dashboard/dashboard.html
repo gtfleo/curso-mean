@@ -1,1 +1,63 @@
-<h1>Dashboard</h1>
+<!-- Seguindo o padrão AminLTE -->
+
+<!-- Esse componente está no arquivo contentHeader.js e está na pasta common/components;
+    O nome do componente é contentHeader (tudo junto com uma letra Maiúscula), 
+    mas para acionar usa-se content-header (tudo minúsculo e serapando as maiúsculas com '-') -->
+<content-header name="Dashboard" small="Versão {{ consts.version }}"></content-header>
+
+<!-- Esse componente valueBox (referenciado como value-box) está no arquivo valueBox.js -->
+<section class="content" ng-controller="DashboardCtrl as dashboard">
+<!-- A section está sendo controlada pele controller declarado em DashboardController.js, para carregar os 
+    valores do banco via ApiRest (ng-controller="DashboardCtrl) -->
+    <div class="row">
+        <value-box grid="4" color-class="bg-green" icon-class="fa fa-bank"
+            value="R$ {{ dashboard.credit | number: 2  }}" text="Total de Créditos"></value-box>
+        <!-- credit | number: 2 quer dizer que está sendo aplicado um filtro de 2 casas decimais para
+            a variável credit, controlada em DashboardCtrl -->
+
+        <value-box grid="4" color-class="bg-red" icon-class="fa fa-credit-card"
+            value="R$ {{ dashboard.debt | number: 2  }}" text="Total de Débitos"></value-box>
+        <value-box grid="4" color-class="bg-blue" icon-class="fa fa-money"
+            value="R$ {{ dashboard.total | number: 2  }}" text="Valor Consolidado"></value-box>
+    </div>
+</section>
+
+<!-- O componente acima substitui todo esse código abaixo:
+<section class="content">
+    <div class="col-xs-4"> 
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>R$ 10,00</h3>
+                <p>Total de Créditos</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bank"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-4"> 
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>R$ 5,00</h3>
+                <p>Total de Débitos</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-credit-card"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-4"> 
+        <div class="small-box bg-blue">
+            <div class="inner">
+                <h3>R$ 5,00</h3>
+                <p>Valor Consolidado</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-money"></i>
+            </div>
+        </div>
+    </div>
+</section>
+-->

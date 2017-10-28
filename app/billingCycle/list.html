@@ -1,0 +1,40 @@
+<div class="box-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Mês</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Mostrar o conteúdo da base, com base na response do controller vm.billingCycles response 
+                (bcCtrl.billingCycles é a lista de ciclos de pagamentos)-->
+            <!-- billingCycle. faz referência a billingCycle dentro de ng-repeat -->
+            <tr ng-repeat="billingCycle in billingCycles">
+                <!--O :: serve para diminuir a quantidade de watches, fazendo o binding 1 única vez,
+                    pois esses elementos são estáticos dentro da lista  (melhoramos a performance),
+                    e assim o angular para de monitorar esses dados desnecessariamente ;
+                    Isso é necessário por causa do 2 way binding do angular
+                    (instalar no chrome e aprender a trabalhar com a extensão batarang,
+                    para monitorar a performance e a utilização dos recursos do angular )-->
+                <td>{{:: billingCycle.name }}</td>
+                <td>{{:: billingCycle.month }}</td>
+                <td>{{:: billingCycle.year }}</td>
+
+                <!-- Coluna de ações: -->
+                <td class="table-actions"> <!-- table-actions está definido em template-custom.css -->
+                    <button class="btn btn-warning" ng-click="showTabUpdate(billingCycle)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-danger" ng-click="showTabDelete(billingCycle)"><i class="fa fa-trash-o"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Para mostrar o paginador -->
+<div class="box-footer clearfix">
+    <!-- Componente paginador -->
+    <paginator url="/#!/billingCycles" pages="{{ pages }}"></paginator>
+</div>

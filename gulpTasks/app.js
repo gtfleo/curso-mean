@@ -21,7 +21,7 @@ gulp.task('app.html', () => {
     return gulp.src('app/**/*.html')
       .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest('public'))
-  })
+})
 
 // criando uma função sempre que a task app.css for chamada:
 gulp.task('app.css', () => {
@@ -46,5 +46,5 @@ gulp.task('app.js', () => {
 //tudo que estiver nessa pasta, não importando a extensão
 gulp.task('app.assets', () => {
     return gulp.src('assets/**/*.*')
-        .pipe(gulp.dest('public/assets'))
+      .pipe(gulp.dest('public/assets'))
 })

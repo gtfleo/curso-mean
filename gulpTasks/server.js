@@ -20,15 +20,15 @@ gulp.task('watch', () => {
     watch('app/**/*.css', () => gulp.start('app.css'))
     watch('app/**/*.js', () => gulp.start('app.js'))
     watch('assets/**/*.*', () => gulp.start('app.assets'))
-})
+  })
 
 //inicializa o servidor, mas antes monitora os arquivos com o watch
 //livereload: sempre que a pasta public mudar, vai ser dado um reload na aplicacao(refresh no browser)
 //ope: abrir o browser automaticamente
 gulp.task('server', ['watch'], () => {
     return gulp.src('public').pipe(webserver({
-        livereload: true,
-        port: 3000,
-        open: true
+      livereload: true,
+      port: 4000,
+      open: true
     }))
 })

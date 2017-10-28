@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html ng-app="primeiraApp"> 
+<html ng-app="primeiraApp">
 <!-- aplicação será controlada pelo ng-app, através das configurações e dependências que estão no arquivo index.js;
     (aqui está o conceito do single page application) -->
 
 <head>
     <meta charset="utf-8">
-    <title>Primeira App</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ consts.appName }}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/assets/css/deps.min.css">
     <link rel="stylesheet" href="/assets/css/app.min.css">
 </head>
 
-<body class="skin-blue fixed side-mini">
+<body class="skin-blue fixed sidebar-mini">
     <!-- O template será formado por 4 partes: header, menu, footer e conteúdo -->
     <div class="wrapper"> <!-- wrapper significa... -->
-        <header class="main-header" ng-include="'/template/header.html'"></header>
-        <aside class="main-sidebar" ng-include="'/template/menu.html'"></aside>
+        <header class="main-header" ng-include="'/template/header/header.html'"></header>
+        <aside class="main-sidebar" ng-include="'/template/menu/menu.html'"></aside>
         <!-- angular-ui-router: todo conteúdo novo será renderizado dentro dessa view content-wrapper -->
         <div class="content-wrapper" ui-view></div>
-        <footer class="main-footer" ng-include="'/template/footer.html'"></footer>
+        <footer class="main-footer" ng-include="'/template/footer/footer.html'"></footer>
     </div>
 
     <script src="/assets/js/deps.min.js"></script>
