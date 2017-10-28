@@ -4,6 +4,7 @@ const bodyParser = require('body-parser') // serve para fazer o parser ou a inte
 const express = require('express')
 const server = express()
 const allowCors = require('./cors') //permite cross-origin requeste para essa APIRest
+const queryParser = require('express-query-int') //os parâmetros skip e limit, da função refresh() do controller são string, causando erro no mongo
 
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
@@ -20,6 +21,8 @@ server.use(bodyParser.json())
 */
 
 server.use(allowCors) //permite uma requisição de outro domínio que não seja o da API
+
+server.use(queryParser()) //converte string para inteiro
 
 //port foi a constante declarada logo acima
 server.listen(port, function(){ 
