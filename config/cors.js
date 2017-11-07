@@ -5,8 +5,8 @@
 */
 
 module.exports = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*') //* é qualquer origem ou você pode escolher os endereços
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Origin', '*') //* permite qualquer origem (ou você pode escolher os endereços)
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE') //métodos suportados pela API
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization') //cabeçalhos suportados pela API-Authorization está no auth.js
     next()
 }
