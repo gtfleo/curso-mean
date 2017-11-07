@@ -1,17 +1,18 @@
 <a href class="dropdown-toggle" data-toggle="dropdown">
     <img src="/assets/imgs/user.jpg" class="user-image" alt="User Image">
-    <span class="hidden-xs">Anônimo</span>
+    <!-- auth é o alias para AuthCtrl (em navbar.html) e getUser é o método em authController.js -->
+    <span class="hidden-xs">{{:: auth.getUser().name }}</span>
 </a>
 <ul class="dropdown-menu">
     <!-- User image -->
     <li class="user-header">
         <img src="/assets/imgs/user.jpg" class="img-circle" alt="User Image">
         <p>
-            Anônimo - Web Developer
-            <small>Membro desde Jan. 2017</small>
+            {{:: auth.getUser().name }}
+            <small>{{:: auth.getUser().email }}</small>
         </p>
     </li>
-    <!-- Menu Body -->
+    <!-- Menu Body - Botões do User da Navbar   (NÃO ESTÁ SENDO USADO!!!)
     <li class="user-body">
         <div class="row">
             <div class="col-xs-4 text-center">
@@ -24,14 +25,14 @@
                 <a href>Amigos</a>
             </div>
         </div>
-    </li>
+    </li> -->
     <!-- Menu Footer-->
     <li class="user-footer">
-        <div class="pull-left">
+        <!--div class="pull-left">
             <a href class="btn btn-default btn-flat">Perfil</a>
-        </div>
+        </div-->
         <div class="pull-right">
-            <a href class="btn btn-default btn-flat">Sair</a>
+            <a href class="btn btn-default btn-flat" ng-click="auth.logout()">Sair</a>
         </div>
     </li>
 </ul>

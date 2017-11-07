@@ -130,14 +130,14 @@
             //se billingCycle estiver com valor válido
             if(vm.billingCycle) {
                 //usando o destructure para tirar o atributo value de dentro de credits:
-                vm.billingCycle.credits.array.forEach(function({value}) {
+                vm.billingCycle.credits.forEach(function({value}) {
                     //+= atribuição aditiva à variável credit
                     //!value: se valor não existir; ||: ou; isNaN: não é um número; 
                     //?: então recebe zero; : parseFloat(): senão recebe
                     vm.credit += !value || isNaN(value) ? 0 : parseFloat(value)
                 })
 
-                vm.billingCycle.debts.array.forEach(function({value}) {
+                vm.billingCycle.debts.forEach(function({value}) {
                     vm.debt += !value || isNaN(value) ? 0 : parseFloat(value)
                 })
             }
